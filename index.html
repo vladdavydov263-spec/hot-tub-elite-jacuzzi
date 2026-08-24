@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hot Tub Elite — Jacuzzi Ogrodowe & SPA</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F8F8F9;--cream-2:#ECEDEF;--espresso:#222325;--espresso-soft:#6B6D72;--amber:#4A4B4E;--amber-deep:#2E2F32;--line:rgba(34,35,37,.12)}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Mulish',sans-serif;background:var(--cream);color:var(--espresso);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:400;line-height:1.08;letter-spacing:-.01em}
+.container{max-width:1240px;margin:0 auto;padding:0 28px}
+.accent{color:var(--amber-deep)}.eyebrow{font-family:'Mulish';font-weight:700;font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;color:var(--amber-deep)}
+nav{position:sticky;top:0;z-index:100;background:rgba(248,248,249,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:74px}
+.logo{font-family:'Fraunces';font-size:1.4rem;font-weight:600;letter-spacing:-.02em;display:flex;align-items:center;gap:.4rem}
+.logo span{color:var(--amber-deep)}
+.nav-links{display:flex;gap:2.2rem;list-style:none}
+.nav-links a{color:var(--espresso-soft);text-decoration:none;font-size:.93rem;font-weight:500;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:1.5px;background:var(--amber);transition:width .3s}
+.nav-links a:hover{color:var(--espresso)}.nav-links a:hover::after{width:100%}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.82rem 1.6rem;border-radius:100px;font-weight:700;font-size:.92rem;text-decoration:none;cursor:pointer;border:none;transition:transform .25s,box-shadow .25s,background .25s;font-family:'Mulish'}
+.btn-primary{background:var(--amber);color:#fff;box-shadow:0 8px 24px -8px rgba(46,47,50,.55)}
+.btn-primary:hover{background:var(--amber-deep);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--espresso);border:1.5px solid var(--espresso)}
+.btn-ghost:hover{background:var(--espresso);color:var(--cream)}
+.hero{position:relative;padding:78px 0 0;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:-1;background:radial-gradient(120% 90% at 85% 0%,rgba(74,75,78,.18),transparent 55%),radial-gradient(80% 70% at 0% 100%,rgba(74,75,78,.10),transparent 60%)}
+.hero-grid{display:grid !important;grid-template-columns:1fr 1fr !important;gap:30px;align-items:center}
+.hero h1{font-size:clamp(2.9rem,6vw,5rem);margin:18px 0 22px}
+.hero h1 em{font-style:italic;color:var(--amber-deep)}
+.hero p.lead{font-size:1.18rem;color:var(--espresso-soft);max-width:480px;margin-bottom:34px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.hero-note{font-size:.86rem;color:var(--espresso-soft);margin-top:18px;display:flex;align-items:center;gap:.5rem}
+.dot{width:8px;height:8px;border-radius:50%;background:#4a8f5e;box-shadow:0 0 0 4px rgba(74,143,94,.18)}
+.hero-photo{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/3;max-height:380px;background:linear-gradient(135deg,var(--espresso),var(--espresso-soft));box-shadow:0 30px 60px -25px rgba(34,35,37,.5)}
+.photo-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:rgba(248,248,249,.4);text-align:center;padding:20px;background:repeating-linear-gradient(45deg,rgba(248,248,249,.03) 0 14px,transparent 14px 28px);cursor:pointer;transition:background .2s}
+.photo-ph:hover{background:rgba(74,75,78,.15)}
+.photo-ph svg{opacity:.5}.photo-ph span{font-size:.78rem;letter-spacing:.06em;font-weight:600}
+.upload-hint{font-size:.7rem;color:var(--amber);margin-top:4px;font-weight:700;letter-spacing:.05em}
+.hero-photo .badge{position:absolute;left:18px;bottom:18px;background:var(--cream);color:var(--espresso);padding:.7rem 1.1rem;border-radius:16px;font-weight:700;font-size:.9rem;display:flex;align-items:center;gap:.6rem;box-shadow:0 12px 30px -10px rgba(0,0,0,.4);z-index:2}
+.badge .em{font-family:'Fraunces';color:var(--amber-deep);font-size:1.15rem}
+.steam{position:absolute;top:8%;right:14%;display:flex;gap:14px;opacity:.5;z-index:2}
+.steam i{display:block;width:6px;height:50px;background:linear-gradient(transparent,rgba(248,248,249,.8));border-radius:6px;animation:rise 4s ease-in-out infinite}
+.steam i:nth-child(2){animation-delay:.8s;height:70px}.steam i:nth-child(3){animation-delay:1.6s}
+@keyframes rise{0%,100%{transform:translateY(6px) scaleY(.9);opacity:.2}50%{transform:translateY(-8px) scaleY(1.1);opacity:.6}}
+.stats{margin-top:74px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--cream-2)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
+.stat{padding:42px 18px;border-right:1px solid var(--line)}.stat:last-child{border-right:none}
+.stat .num{font-family:'Fraunces';font-size:clamp(2.4rem,4vw,3.4rem);font-weight:500;line-height:1}
+.stat .num span{color:var(--amber-deep)}
+.stat .lbl{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--espresso-soft);margin-top:10px;font-weight:600}
+section.block{padding:110px 0}
+.head{max-width:620px;margin-bottom:54px}
+.head h2{font-size:clamp(2.1rem,4vw,3.2rem);margin:14px 0 16px}
+.head p{color:var(--espresso-soft);font-size:1.08rem}
+.center{margin-left:auto;margin-right:auto;text-align:center}
+/* MODELS */
+.models{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.card{background:var(--cream-2);border-radius:22px;overflow:hidden;border:1px solid var(--line);transition:transform .35s,box-shadow .35s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-6px);box-shadow:0 30px 60px -28px rgba(34,35,37,.45)}
+.card .img{aspect-ratio:4/3;background:linear-gradient(135deg,var(--espresso),var(--espresso-soft));position:relative;overflow:hidden}
+.card .tag{position:absolute;top:14px;left:14px;background:var(--amber);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.08em;padding:.4rem .8rem;border-radius:8px;text-transform:uppercase;z-index:3}
+.card .body{padding:26px 24px 28px;display:flex;flex-direction:column;flex:1}
+.card h3{font-size:1.55rem;margin-bottom:6px}.card .size{font-size:.86rem;color:var(--espresso-soft);margin-bottom:18px}
+.card ul{list-style:none;margin-bottom:22px;flex:1}
+.card li{font-size:.92rem;color:var(--espresso-soft);padding:5px 0 5px 22px;position:relative}
+.card li::before{content:'';position:absolute;left:0;top:13px;width:8px;height:8px;border-radius:50%;background:var(--amber);opacity:.7}
+.price{display:flex;align-items:baseline;gap:10px;margin-bottom:20px}
+.price .now{font-family:'Fraunces';font-size:1.9rem;font-weight:500}
+.price .old{font-size:1rem;color:var(--espresso-soft);text-decoration:line-through;opacity:.6}
+/* SLIDER */
+.slider-wrap{position:relative;width:100%;height:100%}
+.slider-track{display:flex;height:100%;transition:transform .45s ease;will-change:transform}
+.slide{width:100%;height:100%;flex:none;position:relative;background:#1a1a1a;cursor:pointer}
+.slide img{width:100%;height:100%;object-fit:cover;display:block}
+.slide .upload-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(26,26,26,.6);color:rgba(255,255,255,.7);font-size:.78rem;font-weight:700;letter-spacing:.08em;gap:8px;transition:opacity .3s;opacity:0}
+.slide:hover .upload-overlay{opacity:1}
+.slide.empty .upload-overlay{opacity:1;background:rgba(26,26,26,.5)}
+.slide .upload-overlay svg{opacity:.8}
+.sl-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.5);color:#fff;border:none;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:1.1rem;z-index:4;line-height:1;display:flex;align-items:center;justify-content:center}
+.sl-btn.prev{left:8px}.sl-btn.next{right:8px}
+.sl-dots{position:absolute;bottom:9px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:4}
+.sl-dots span{width:7px;height:7px;border-radius:50%;background:#fff;opacity:.4;transition:opacity .3s;display:block}
+.sl-dots span.on{opacity:1}
+/* WHY */
+.why{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.why-photo{border-radius:24px;overflow:hidden;aspect-ratio:5/6;background:linear-gradient(160deg,var(--espresso),var(--espresso-soft));box-shadow:0 30px 70px -35px rgba(34,35,37,.5);position:relative;cursor:pointer}
+.why-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.feat{display:flex;gap:18px;padding:22px 0;border-bottom:1px solid var(--line)}.feat:last-child{border-bottom:none}
+.feat .ic{flex:none;width:48px;height:48px;border-radius:14px;background:rgba(74,75,78,.14);display:flex;align-items:center;justify-content:center;color:var(--amber-deep)}
+.feat h4{font-size:1.15rem;margin-bottom:4px;font-weight:600}.feat p{font-size:.94rem;color:var(--espresso-soft)}
+/* GALLERY */
+.gallery-sec{background:var(--espresso);color:var(--cream)}
+.gallery-sec .eyebrow{color:var(--amber)}.gallery-sec .head h2{color:var(--cream)}.gallery-sec .head p{color:rgba(248,248,249,.65)}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px}
+.gtile{border-radius:16px;overflow:hidden;background:#1a1a1a;position:relative;transition:transform .4s;cursor:pointer}
+.gtile:hover{transform:scale(1.02)}
+.gtile img{width:100%;height:100%;object-fit:cover;display:block}
+.gtile.big{grid-column:span 2;grid-row:span 2}.gtile.wide{grid-column:span 2}
+.gtile .upload-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(26,26,26,.55);color:rgba(255,255,255,.6);font-size:.75rem;font-weight:700;letter-spacing:.06em;gap:8px;transition:opacity .3s;opacity:0}
+.gtile:hover .upload-overlay,.gtile.empty .upload-overlay{opacity:1}
+/* REVIEWS */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.review{background:var(--cream-2);border:1px solid var(--line);border-radius:20px;padding:30px 28px}
+.stars{color:var(--amber);letter-spacing:3px;font-size:1rem;margin-bottom:16px}
+.review p{font-size:1rem;color:var(--espresso);font-style:italic;font-family:'Fraunces';line-height:1.55;margin-bottom:22px}
+.reviewer{display:flex;align-items:center;gap:14px}
+.av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--amber),var(--amber-deep));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-family:'Fraunces';font-size:1.1rem}
+.reviewer b{display:block;font-size:.93rem}.reviewer small{color:var(--espresso-soft)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+.step .n{font-family:'Fraunces';font-size:3rem;color:var(--amber);opacity:.35;line-height:1}
+.step h4{font-size:1.2rem;margin:8px 0 8px;font-weight:600}.step p{font-size:.93rem;color:var(--espresso-soft)}
+/* FAQ */
+.faq-grid{display:grid;grid-template-columns:320px 1fr;gap:60px;align-items:start}
+.faq-side{position:sticky;top:100px}
+.faq-side h2{font-size:clamp(1.9rem,3.2vw,2.6rem);margin:14px 0 16px}.faq-side p{color:var(--espresso-soft);margin-bottom:28px}
+.faq-cats{display:flex;flex-direction:column;gap:8px}
+.faq-cat{padding:.65rem 1rem;border-radius:12px;border:1.5px solid var(--line);cursor:pointer;font-weight:600;font-size:.88rem;transition:all .2s;background:transparent;color:var(--espresso-soft);text-align:left;font-family:'Mulish'}
+.faq-cat:hover{border-color:var(--amber);color:var(--amber-deep)}.faq-cat.active{background:var(--amber);color:#fff;border-color:var(--amber)}
+.faq-list{display:flex;flex-direction:column;gap:11px}
+.faq-item{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--cream-2);transition:box-shadow .3s}
+.faq-item:hover{box-shadow:0 8px 28px -14px rgba(34,35,37,.28)}.faq-item.hidden{display:none}
+.faq-q{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:20px 24px;cursor:pointer;font-weight:600;font-size:.97rem;line-height:1.4;user-select:none}
+.faq-q .ico{flex:none;width:30px;height:30px;border-radius:50%;background:rgba(74,75,78,.12);display:flex;align-items:center;justify-content:center;color:var(--amber-deep);font-size:1.1rem;transition:transform .35s,background .25s}
+.faq-item.open .faq-q .ico{transform:rotate(45deg);background:var(--amber);color:#fff}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1)}
+.faq-item.open .faq-a{max-height:400px}
+.faq-a-inner{padding:0 24px 22px;color:var(--espresso-soft);font-size:.96rem;line-height:1.7}
+.faq-a-inner strong{color:var(--espresso)}
+.cta{background:var(--espresso);color:var(--cream);border-radius:32px;padding:64px 56px;position:relative;overflow:hidden}
+.cta-bg{position:absolute;inset:0;background:radial-gradient(90% 120% at 100% 0%,rgba(74,75,78,.3),transparent 55%);z-index:0}
+.cta-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+.cta h2{font-size:clamp(1.9rem,3.8vw,2.9rem);color:var(--cream);margin-bottom:16px}
+.cta p{color:rgba(248,248,249,.72);margin-bottom:8px;font-size:1.03rem}
+.form{background:rgba(248,248,249,.06);border:1px solid rgba(248,248,249,.16);border-radius:22px;padding:30px}
+.form label{display:block;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(248,248,249,.65);margin:0 0 8px;font-weight:700}
+.form input{width:100%;padding:13px 16px;margin-bottom:16px;border-radius:12px;border:1px solid rgba(248,248,249,.18);background:rgba(248,248,249,.06);color:var(--cream);font-size:.97rem;font-family:'Mulish'}
+.form input::placeholder{color:rgba(248,248,249,.35)}.form input:focus{outline:none;border-color:var(--amber)}
+.form .btn-primary{width:100%;justify-content:center}
+.form small{display:block;text-align:center;color:rgba(248,248,249,.45);margin-top:12px;font-size:.78rem}
+footer{padding:70px 0 40px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:40px;padding-bottom:44px;border-bottom:1px solid var(--line)}
+footer .logo{margin-bottom:14px}
+footer p.desc{color:var(--espresso-soft);font-size:.93rem;max-width:270px}
+.foot-col h5{font-family:'Mulish';font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--espresso);margin-bottom:16px}
+.foot-col a{display:block;color:var(--espresso-soft);text-decoration:none;font-size:.93rem;margin-bottom:10px;transition:color .2s}
+.foot-col a:hover{color:var(--amber-deep)}
+.foot-bottom{padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--espresso-soft);font-size:.83rem}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .75s cubic-bezier(.2,.7,.3,1),transform .75s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
+/* Upload toast */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--espresso);color:var(--cream);padding:.8rem 1.6rem;border-radius:50px;font-size:.88rem;font-weight:600;z-index:9999;transition:transform .4s cubic-bezier(.2,.7,.3,1);pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0)}
+@media(max-width:980px){
+  .nav-links{display:none}
+  .hero-grid{grid-template-columns:1fr 1fr !important;gap:20px}
+  .why,.cta-grid,.faq-grid{grid-template-columns:1fr;gap:40px}
+  .hero-photo{aspect-ratio:4/3.2;max-height:420px}
+  .stats-grid{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:none}.stat{border-bottom:1px solid var(--line)}
+  .models,.reviews,.steps{grid-template-columns:1fr}
+  .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:150px}.gtile.big{grid-column:span 2;grid-row:span 1}
+  .foot-grid{grid-template-columns:1fr 1fr}.cta{padding:42px 26px}
+  .faq-side{position:static}.faq-cats{flex-direction:row;flex-wrap:wrap}
+}
+@media(max-width:560px){
+  section.block{padding:70px 0}.stats-grid{grid-template-columns:1fr}.stat{border-right:none}
+  .gallery{grid-template-columns:1fr}.foot-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- hidden file input -->
+<input type="file" id="fileIn" accept="image/*" style="display:none">
+<div class="toast" id="toast">✓ Zdjęcie dodane!</div>
+
+<nav>
+  <div class="container nav-inner">
+    <div class="logo">Hot Tub <span>Elite</span></div>
+    <ul class="nav-links">
+      <li><a href="#modele">Modele</a></li>
+      <li><a href="#dlaczego">O nas</a></li>
+      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a href="#kontakt" class="btn btn-primary">Zapytaj o wycenę</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="container hero-grid">
+    <div class="reveal in">
+      <div class="eyebrow">Producent · Polska</div>
+      <h1>Twoja własna<br><em>oaza spokoju</em><br>w ogrodzie.</h1>
+      <p class="lead">Kwadratowe wanny SPA z hydromasażem, ozonem i akrylem Lucite, które zmieniają zwykły wieczór w rytuał odprężenia. Projektowane i budowane w Polsce.</p>
+      <div class="hero-cta">
+        <a href="#modele" class="btn btn-primary">Zobacz modele →</a>
+        <a href="#galeria" class="btn btn-ghost">Zobacz realizacje</a>
+      </div>
+
+      <div class="hero-note"><span class="dot"></span> Dostawa w całej Polsce · płatność przy odbiorze</div>
+    </div>
+    <div class="hero-photo reveal in" style="transition-delay:.15s;aspect-ratio:4/3;max-height:380px" onclick="uploadImg('hero')" id="heroPh">
+      <div class="steam"><i></i><i></i><i></i></div>
+      <img id="heroImg" src="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;border-radius:28px">
+      <div id="heroPlaceholder" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:rgba(34,35,37,.6);border-radius:28px;cursor:pointer;z-index:2">
+        <div style="width:64px;height:64px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(74,75,78,.5)">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        </div>
+        <div style="text-align:center">
+          <div style="color:#fff;font-weight:800;font-size:1rem;letter-spacing:.04em">Dodaj zdjęcie</div>
+          <div style="color:var(--amber);font-size:.8rem;margin-top:4px">Kliknij i wybierz plik</div>
+        </div>
+      </div>
+      <div class="badge"><span class="em">4.9</span> ★ · 600+ opinii</div>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat reveal"><div class="num"><span>350+</span></div><div class="lbl">realizacji rocznie</div></div>
+        <div class="stat reveal" style="transition-delay:.1s"><div class="num">2000<span>+</span></div><div class="lbl">zadowolonych klientów</div></div>
+        <div class="stat reveal" style="transition-delay:.2s"><div class="num">10<span> dni</span></div><div class="lbl">termin dostawy</div></div>
+        <div class="stat reveal" style="transition-delay:.3s"><div class="num">24<span> mc</span></div><div class="lbl">gwarancji</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- JACUZZI -->
+<section class="block" id="modele" style="background:var(--cream-2)">
+  <div class="container">
+    <div class="head reveal">
+      <div class="eyebrow">Nasza kolekcja</div>
+      <h2>Kwadratowe <span class="accent">jacuzzi ogrodowe</span></h2>
+      <p>Elektryczne wanny SPA z systemem hydromasażu, ozonem i akrylem Lucite — komfort premium na każdą porę roku.</p>
+    </div>
+    <div class="models">
+
+      <!-- Model 5R50 -->
+      <div class="card reveal">
+        <div class="img">
+          <div class="slider-wrap" id="m0-wrap">
+            <div class="slider-track" id="m0-track">
+              <div class="slide empty" onclick="uploadSlide('m0',0)"><img id="m0-0"><div class="upload-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Dodaj zdjęcie</div></div>
+              <div class="slide empty" onclick="uploadSlide('m0',1)"><img id="m0-1"><div class="upload-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Dodaj zdjęcie</div></div>
+              <div class="slide empty" onclick="uploadSlide('m0',2)"><img id="m0-2"><div class="upload-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Dodaj zdjęcie</div></div>
+            </div>
+            <button class="sl-btn prev" onclick="slideGo('m0',-1,event)">‹</button>
+            <button class="sl-btn next" onclick="slideGo('m0',1,event)">›</button>
+            <div class="sl-dots" id="m0-dots"><span class="on"></span><span></span><span></span></div>
+          </div>
+        </div>
+        <div class="body">
+          <h3>Model 5R50</h3>
+          <div class="size">5 osób · 200×200×88 cm</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;margin-bottom:18px">
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Dysze:</b> 28 szt.</div>
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Pojemność:</b> 1000 l</div>
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Pompa:</b> 3,0 HP</div>
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Grzałka:</b> 3,0 kW</div>
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Masa:</b> 340 kg</div>
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Zasilanie:</b> 220–240 V</div>
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Ozon:</b> Tak</div>
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Niecka:</b> Lucite</div>
+          </div>
+          <a href="#kontakt" class="btn btn-primary" style="justify-content:center;margin-top:auto">Zapytaj o cenę →</a>
+        </div>
+      </div>
+
+      <!-- Model 6R02 -->
+      <div class="card reveal" style="transition-delay:.1s">
+        <div class="img">
+          <div class="slider-wrap" id="m1-wrap">
+            <div class="slider-track" id="m1-track">
+              <div class="slide empty" onclick="uploadSlide('m1',0)"><img id="m1-0"><div class="upload-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Dodaj zdjęcie</div></div>
+              <div class="slide empty" onclick="uploadSlide('m1',1)"><img id="m1-1"><div class="upload-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Dodaj zdjęcie</div></div>
+              <div class="slide empty" onclick="uploadSlide('m1',2)"><img id="m1-2"><div class="upload-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Dodaj zdjęcie</div></div>
+            </div>
+            <button class="sl-btn prev" onclick="slideGo('m1',-1,event)">‹</button>
+            <button class="sl-btn next" onclick="slideGo('m1',1,event)">›</button>
+            <div class="sl-dots" id="m1-dots"><span class="on"></span><span></span><span></span></div>
+          </div>
+        </div>
+        <div class="body">
+          <h3>Model 6R02</h3>
+          <div class="size">6 osób · 200×200×88 cm</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;margin-bottom:18px">
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Dysze:</b> 28 szt.</div>
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Pojemność:</b> 1050 l</div>
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Pompa:</b> 3,0 HP</div>
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Grzałka:</b> 3,0 kW</div>
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Masa:</b> 350 kg</div>
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Zasilanie:</b> 220–240 V</div>
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Ozon:</b> Tak</div>
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Niecka:</b> Lucite</div>
+          </div>
+          <a href="#kontakt" class="btn btn-primary" style="justify-content:center;margin-top:auto">Zapytaj o cenę →</a>
+        </div>
+      </div>
+
+      <!-- Model 5A13 -->
+      <div class="card reveal" style="transition-delay:.2s">
+        <div class="img">
+          <span class="tag" style="background:var(--espresso)">Premium</span>
+          <div class="slider-wrap" id="m2-wrap">
+            <div class="slider-track" id="m2-track">
+              <div class="slide empty" onclick="uploadSlide('m2',0)"><img id="m2-0"><div class="upload-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Dodaj zdjęcie</div></div>
+              <div class="slide empty" onclick="uploadSlide('m2',1)"><img id="m2-1"><div class="upload-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Dodaj zdjęcie</div></div>
+              <div class="slide empty" onclick="uploadSlide('m2',2)"><img id="m2-2"><div class="upload-overlay"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Dodaj zdjęcie</div></div>
+            </div>
+            <button class="sl-btn prev" onclick="slideGo('m2',-1,event)">‹</button>
+            <button class="sl-btn next" onclick="slideGo('m2',1,event)">›</button>
+            <div class="sl-dots" id="m2-dots"><span class="on"></span><span></span><span></span></div>
+          </div>
+        </div>
+        <div class="body">
+          <h3>Model 5A13</h3>
+          <div class="size">5 osób · 200×200×88 cm</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;margin-bottom:18px">
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Dysze:</b> 33 szt.</div>
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Pojemność:</b> 1100 l</div>
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Pompa:</b> 3,0 HP</div>
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Grzałka:</b> 3,0 kW</div>
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Masa:</b> 375 kg</div>
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Zasilanie:</b> 220–240 V</div>
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Ozon:</b> Tak</div>
+            <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Niecka:</b> Lucite</div>
+          </div>
+          <a href="#kontakt" class="btn btn-primary" style="justify-content:center;margin-top:auto">Zapytaj o cenę →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section class="block" id="dlaczego" style="background:var(--cream-2)">
+  <div class="container why">
+    <div class="why-photo reveal" onclick="uploadImg('why')" id="whyPh" style="cursor:pointer">
+      <img id="whyImg" src="https://static.wixstatic.com/media/1f38a2_3892a44e3e364823bf1d752435fae358~mv2.jpeg/v1/crop/x_0,y_558,w_1066,h_950/fill/w_900,h_1000,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/oferta%20foto1.jpeg" style="width:100%;height:100%;object-fit:cover;display:block">
+      <div class="upload-overlay" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,.35);color:#fff;font-size:.78rem;font-weight:700;gap:8px;opacity:0;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        Zmień zdjęcie
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:.1s">
+      <div class="eyebrow">Dlaczego Hot Tub Elite</div>
+      <h2 style="font-size:clamp(1.9rem,3.4vw,2.8rem);margin:14px 0 28px">Jakość, którą czujesz<br>od pierwszej kąpieli</h2>
+      <div class="feat"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/></svg></div><div><h4>Akryl Lucite premium</h4><p>Wytrzymała niecka odporna na promieniowanie UV i zmiany temperatury.</p></div></div>
+      <div class="feat"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v6m0 0c-2 3-4 5-4 8a4 4 0 0 0 8 0c0-3-2-5-4-8"/></svg></div><div><h4>Szybkie nagrzewanie elektryczne</h4><p>Stabilna temperatura w każdych warunkach, niski koszt eksploatacji.</p></div></div>
+      <div class="feat"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div><div><h4>Bezpośrednio od producenta</h4><p>Bez pośredników — uczciwa cena i pełna kontrola jakości.</p></div></div>
+      <div class="feat"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div><h4>Dostawa i montaż w 10 dni</h4><p>Dowozimy w całej Polsce i ustawiamy na miejscu.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block gallery-sec" id="galeria">
+  <div class="container">
+    <div class="head reveal"><div class="eyebrow">Nasze realizacje</div><h2>Galeria <span class="accent">kwadratowych jacuzzi</span></h2><p>Zdjęcia zrealizowanych wanien SPA u naszych klientów.</p></div>
+    <div class="gallery" style="grid-auto-rows:190px">
+      <div class="gtile big empty" id="g0" onclick="uploadGal(0)"><img id="gi0" style="width:100%;height:100%;object-fit:cover;display:none"><div class="upload-overlay"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>+</div></div>
+      <div class="gtile empty" id="g1" onclick="uploadGal(1)"><img id="gi1" style="width:100%;height:100%;object-fit:cover;display:none"><div class="upload-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>+</div></div>
+      <div class="gtile empty" id="g2" onclick="uploadGal(2)"><img id="gi2" style="width:100%;height:100%;object-fit:cover;display:none"><div class="upload-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>+</div></div>
+      <div class="gtile wide empty" id="g3" onclick="uploadGal(3)"><img id="gi3" style="width:100%;height:100%;object-fit:cover;display:none"><div class="upload-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>+</div></div>
+      <div class="gtile empty" id="g4" onclick="uploadGal(4)"><img id="gi4" style="width:100%;height:100%;object-fit:cover;display:none"><div class="upload-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>+</div></div>
+      <div class="gtile empty" id="g5" onclick="uploadGal(5)"><img id="gi5" style="width:100%;height:100%;object-fit:cover;display:none"><div class="upload-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>+</div></div>
+      <div class="gtile empty" id="g6" onclick="uploadGal(6)"><img id="gi6" style="width:100%;height:100%;object-fit:cover;display:none"><div class="upload-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>+</div></div>
+      <div class="gtile empty" id="g7" onclick="uploadGal(7)"><img id="gi7" style="width:100%;height:100%;object-fit:cover;display:none"><div class="upload-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>+</div></div>
+      <div class="gtile wide empty" id="g8" onclick="uploadGal(8)"><img id="gi8" style="width:100%;height:100%;object-fit:cover;display:none"><div class="upload-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>+</div></div>
+      <div class="gtile empty" id="g9" onclick="uploadGal(9)"><img id="gi9" style="width:100%;height:100%;object-fit:cover;display:none"><div class="upload-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>+</div></div>
+      <div class="gtile empty" id="g10" onclick="uploadGal(10)"><img id="gi10" style="width:100%;height:100%;object-fit:cover;display:none"><div class="upload-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>+</div></div>
+      <div class="gtile empty" id="g11" onclick="uploadGal(11)"><img id="gi11" style="width:100%;height:100%;object-fit:cover;display:none"><div class="upload-overlay"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>+</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- OPINIE -->
+<section class="block" id="opinie">
+  <div class="container">
+    <div class="head center reveal"><div class="eyebrow">Opinie klientów</div><h2>Zaufały nam <span class="accent">setki rodzin</span></h2></div>
+    <div class="reviews">
+      <div class="review reveal">
+        <div class="stars">★★★★★</div>
+        <p>„Jacuzzi stoi już rok i sprawdza się idealnie zimą. Woda nagrzewa się szybciej niż myślałem, jakość akrylu pierwsza klasa."</p>
+        <div class="reviewer"><div class="av">K</div><div><b>Krzysztof N.</b><small>Wrocław</small></div></div>
+        <div onclick="uploadReview(0)" style="margin-top:14px;border-radius:12px;overflow:hidden;aspect-ratio:4/3;background:var(--cream);border:2px dashed var(--line);cursor:pointer;position:relative">
+          <img id="rv0img" src="" style="width:100%;height:100%;object-fit:cover;display:none">
+          <div id="rv0ph" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--espresso-soft)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span style="font-size:.75rem;font-weight:700">+ Dodaj zdjęcie</span></div>
+        </div>
+      </div>
+      <div class="review reveal" style="transition-delay:.1s">
+        <div class="stars">★★★★★</div>
+        <p>„Cała rodzina zakochana. Dostawa zgodnie z obietnicą, montaż na miejscu. Polecam każdemu, kto się waha."</p>
+        <div class="reviewer"><div class="av">M</div><div><b>Magdalena R.</b><small>Kraków</small></div></div>
+        <div onclick="uploadReview(1)" style="margin-top:14px;border-radius:12px;overflow:hidden;aspect-ratio:4/3;background:var(--cream);border:2px dashed var(--line);cursor:pointer;position:relative">
+          <img id="rv1img" src="" style="width:100%;height:100%;object-fit:cover;display:none">
+          <div id="rv1ph" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--espresso-soft)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span style="font-size:.75rem;font-weight:700">+ Dodaj zdjęcie</span></div>
+        </div>
+      </div>
+      <div class="review reveal" style="transition-delay:.2s">
+        <div class="stars">★★★★★</div>
+        <p>„Najlepsza inwestycja w ogród. Wieczorny relaks pod gwiazdami — nie wyobrażam sobie tego bez Hot Tub Elite."</p>
+        <div class="reviewer"><div class="av">T</div><div><b>Tomasz W.</b><small>Poznań</small></div></div>
+        <div onclick="uploadReview(2)" style="margin-top:14px;border-radius:12px;overflow:hidden;aspect-ratio:4/3;background:var(--cream);border:2px dashed var(--line);cursor:pointer;position:relative">
+          <img id="rv2img" src="" style="width:100%;height:100%;object-fit:cover;display:none">
+          <div id="rv2ph" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--espresso-soft)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span style="font-size:.75rem;font-weight:700">+ Dodaj zdjęcie</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCES -->
+<section class="block" style="background:var(--cream-2)">
+  <div class="container">
+    <div class="head reveal"><div class="eyebrow">Prosto i wygodnie</div><h2>Jak złożyć zamówienie?</h2></div>
+    <div class="steps">
+      <div class="step reveal"><div class="n">01</div><h4>Wybierz model</h4><p>Przejrzyj naszą kolekcję jacuzzi i dobierz rozmiar do potrzeb.</p></div>
+      <div class="step reveal" style="transition-delay:.1s"><div class="n">02</div><h4>Skontaktuj się</h4><p>Potwierdzimy wycenę i szczegóły zamówienia.</p></div>
+      <div class="step reveal" style="transition-delay:.2s"><div class="n">03</div><h4>Zamów</h4><p>Realizacja i dostawa w całej Polsce w 10 dni.</p></div>
+      <div class="step reveal" style="transition-delay:.3s"><div class="n">04</div><h4>Ciesz się</h4><p>Płatność przy odbiorze — i pierwsza kąpiel!</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="block" id="faq">
+  <div class="container">
+    <div class="faq-grid">
+      <div class="faq-side reveal">
+        <div class="eyebrow">Masz pytania?</div>
+        <h2>Często zadawane pytania</h2>
+        <p>Wszystko, co chcą wiedzieć klienci przed zakupem.</p>
+        <div class="faq-cats">
+          <button class="faq-cat active" data-cat="all">Wszystkie</button>
+          <button class="faq-cat" data-cat="uzytkowanie">Użytkowanie</button>
+          <button class="faq-cat" data-cat="montaz">Montaż i dostawa</button>
+          <button class="faq-cat" data-cat="konserwacja">Konserwacja</button>
+          <button class="faq-cat" data-cat="platnosc">Płatność</button>
+        </div>
+        <div style="margin-top:32px"><a href="#kontakt" class="btn btn-primary">Zadaj pytanie →</a></div>
+      </div>
+      <div class="faq-list reveal" style="transition-delay:.1s">
+        <div class="faq-item open" data-cat="uzytkowanie"><div class="faq-q">Jak długo nagrzewa się woda w jacuzzi?<div class="ico">+</div></div><div class="faq-a"><div class="faq-a-inner">Standardowo <strong>1–2 godziny</strong> przy użyciu grzałki elektrycznej 3,0 kW. Zimą przy mrozach poniżej –10°C dodaj ok. 30 minut.</div></div></div>
+        <div class="faq-item" data-cat="uzytkowanie"><div class="faq-q">Czy mogę korzystać z jacuzzi przez cały rok?<div class="ico">+</div></div><div class="faq-a"><div class="faq-a-inner"><strong>Tak — zimowa kąpiel przy –20°C jest absolutnie możliwa.</strong> Przy dłuższych mrozach zabezpiecz instalację hydrauliczną lub spuść wodę podczas nieużywania.</div></div></div>
+        <div class="faq-item" data-cat="uzytkowanie"><div class="faq-q">Ile osób może jednocześnie korzystać z jacuzzi?<div class="ico">+</div></div><div class="faq-a"><div class="faq-a-inner"><strong>Modele 5R50 i 5A13 mieszczą 5 osób</strong>, model 6R02 do 6 osób.</div></div></div>
+        <div class="faq-item" data-cat="montaz"><div class="faq-q">Jaka jest procedura dostawy?<div class="ico">+</div></div><div class="faq-a"><div class="faq-a-inner">Realizacja trwa <strong>do 10 dni roboczych</strong>. Wymagamy wyrównanego, utwardzonego podłoża min. <strong>3×3 m</strong>.</div></div></div>
+        <div class="faq-item" data-cat="montaz"><div class="faq-q">Czy wymagane jest podłączenie do prądu?<div class="ico">+</div></div><div class="faq-a"><div class="faq-a-inner">Tak, jacuzzi elektryczne <strong>wymaga gniazdka 230V (220–240V)</strong> w pobliżu miejsca ustawienia oraz dostępu do wody.</div></div></div>
+        <div class="faq-item" data-cat="konserwacja"><div class="faq-q">Jak dbać o obudowę i nieckę?<div class="ico">+</div></div><div class="faq-a"><div class="faq-a-inner"><strong>Regularne czyszczenie akrylu Lucite</strong> łagodnymi środkami, bez ostrych detergentów. Przy dobrej pielęgnacji jacuzzi służy 15–20 lat.</div></div></div>
+        <div class="faq-item" data-cat="konserwacja"><div class="faq-q">Jak długo można używać tej samej wody?<div class="ico">+</div></div><div class="faq-a"><div class="faq-a-inner">Dzięki wbudowanemu <strong>systemowi ozonowania</strong> woda pozostaje czysta przez 1–2 tygodnie przy regularnym użytkowaniu.</div></div></div>
+        <div class="faq-item" data-cat="platnosc"><div class="faq-q">Jakie formy płatności akceptujecie?<div class="ico">+</div></div><div class="faq-a"><div class="faq-a-inner">Akceptujemy <strong>gotówkę przy odbiorze</strong>, <strong>przelew przy dostawie</strong> oraz <strong>przelew bankowy</strong> przed dostawą.</div></div></div>
+        <div class="faq-item" data-cat="platnosc"><div class="faq-q">Jaka jest gwarancja?<div class="ico">+</div></div><div class="faq-a"><div class="faq-a-inner"><strong>12 miesięcy gwarancji</strong> na całe jacuzzi wraz z wyposażeniem.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="block" id="kontakt">
+  <div class="container">
+    <div class="cta reveal">
+      <div class="cta-bg"></div>
+      <div class="cta-grid">
+        <div>
+          <div class="eyebrow" style="color:var(--amber)">Bezpłatna wycena</div>
+          <h2>Zacznij swoją podróż<br>ku odprężeniu</h2>
+          <p>Zostaw kontakt — odpiszemy w ciągu 24 godzin.</p>
+          <p style="margin-top:22px"><strong style="color:var(--amber)">☏</strong> +48 576 694 076</p>
+          <p><strong style="color:var(--amber)">✉</strong> contact.hottubelite25@gmail.com</p>
+        </div>
+        <div class="form">
+          <label>Imię</label><input type="text" placeholder="Jak się do Ciebie zwracać?">
+          <label>Telefon</label><input type="tel" placeholder="+48 ...">
+          <label>E-mail</label><input type="email" placeholder="twoj@email.pl">
+          <a href="#" class="btn btn-primary">Wyślij zapytanie →</a>
+          <small>Odpowiedź gwarantowana w 24 godziny.</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div><div class="logo">Hot Tub <span>Elite</span></div><p class="desc">Zamień swój ogród w luksusowe SPA — kwadratowe jacuzzi z hydromasażem produkowane w Polsce.</p></div>
+      <div class="foot-col"><h5>Nawigacja</h5><a href="#modele">Modele</a><a href="#dlaczego">O nas</a><a href="#galeria">Galeria</a><a href="#faq">FAQ</a><a href="#kontakt">Kontakt</a></div>
+      <div class="foot-col"><h5>Kontakt</h5><a href="tel:+48576694076">+48 576 694 076</a><a href="mailto:contact.hottubelite25@gmail.com">contact.hottubelite25@gmail.com</a><a href="https://www.instagram.com/hot_tub_elite_/" target="_blank" rel="noopener">Instagram</a><a href="#">Facebook</a></div>
+      <div class="foot-col"><h5>Godziny otwarcia</h5><a style="cursor:default">Pon.–Pt.: 09:00–18:00</a><a style="cursor:default">Sob.: 10:00–18:00</a><a style="cursor:default">Niedz.: zamknięte</a></div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 Hot Tub Elite. Wszelkie prawa zastrzeżone.</span><span>Producent jacuzzi ogrodowych · Polska</span></div>
+  </div>
+</footer>
+
+<!-- STICKY BUTTONS -->
+<div style="position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:12px">
+  <!-- WhatsApp -->
+  <a href="https://wa.me/48576694076" target="_blank" rel="noopener noreferrer" onclick="window.open('https://wa.me/48576694076','_blank')" style="width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 6px 24px rgba(37,211,102,.5);transition:transform .2s" onmouseover="this.style.transform='scale(1.12)'" onmouseout="this.style.transform='scale(1)'">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.057 23.882a.5.5 0 0 0 .61.61l6.058-1.466A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.805 9.805 0 0 1-5.031-1.388l-.36-.214-3.733.904.92-3.63-.235-.374A9.818 9.818 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+  </a>
+  <!-- Phone call -->
+  <a href="tel:+48576694076" style="width:56px;height:56px;background:var(--amber);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 6px 24px rgba(46,47,50,.55);transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='scale(1.12)'" onmouseout="this.style.transform='scale(1)'">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+  </a>
+</div>
+
+<div style="display:none">
+  </div>
+</footer>
+
+<script>
+// ===== REVEAL =====
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.08});
+document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+
+// ===== IMAGE UPLOAD SYSTEM =====
+let pendingCb=null;
+const fileIn=document.getElementById('fileIn');
+
+function compress(file,cb){
+  const r=new FileReader();
+  r.onload=e=>{
+    const img=new Image();
+    img.onload=()=>{
+      const MAX=900;
+      let w=img.width,h=img.height;
+      if(w>MAX){h=h*MAX/w;w=MAX;}
+      if(h>MAX){w=w*MAX/h;h=MAX;}
+      const c=document.createElement('canvas');
+      c.width=w;c.height=h;
+      c.getContext('2d').drawImage(img,0,0,w,h);
+      cb(c.toDataURL('image/jpeg',.82));
+    };
+    img.src=e.target.result;
+  };
+  r.readAsDataURL(file);
+}
+
+function showToast(){
+  const t=document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+fileIn.addEventListener('change',()=>{
+  if(fileIn.files[0] && pendingCb){
+    compress(fileIn.files[0],data=>{
+      pendingCb(data);
+      showToast();
+      pendingCb=null;
+      fileIn.value='';
+    });
+  }
+});
+
+function triggerUpload(cb){pendingCb=cb;fileIn.click();}
+
+// Hero
+function uploadImg(key){
+  triggerUpload(data=>{
+    if(key==='hero'){
+      document.getElementById('heroImg').src=data;
+      document.getElementById('heroImg').style.display='block';
+      document.getElementById('heroPlaceholder').style.display='none';
+    } else if(key==='why'){
+      document.getElementById('whyImg').src=data;
+    }
+    try{window.storage.set('img_'+key,data);}catch(e){}
+  });
+}
+
+// Gallery
+function uploadGal(i){
+  triggerUpload(data=>{
+    const img=document.getElementById('gi'+i);
+    const tile=document.getElementById('g'+i);
+    img.src=data;img.style.display='block';
+    tile.classList.remove('empty');
+    try{window.storage.set('gal_'+i,data);}catch(e){}
+  });
+}
+
+// Load saved images
+async function loadSaved(){
+  try{
+    // Hero
+    const h=await window.storage.get('img_hero');
+    if(h){
+      document.getElementById('heroImg').src=h.value;
+      document.getElementById('heroImg').style.display='block';
+      document.getElementById('heroPlaceholder').style.display='none';
+    }
+    // Why
+    const w=await window.storage.get('img_why');
+    if(w) document.getElementById('whyImg').src=w.value;
+    // Gallery
+    for(let i=0;i<36;i++){
+      try{const g=await window.storage.get('gal_'+i);if(g){const img=document.getElementById('gi'+i);img.src=g.value;img.style.display='block';document.getElementById('g'+i).classList.remove('empty');}}catch(e){}
+    }
+  }catch(e){}
+}
+loadSaved();
+
+// ===== SLIDERY ZDJĘĆ MODELI =====
+const sliders={};
+function initSlider(id){sliders[id]={idx:0};}
+['m0','m1','m2'].forEach(initSlider);
+
+function slideGo(id,dir,e){
+  if(e)e.stopPropagation();
+  const s=sliders[id];
+  s.idx=(s.idx+dir+3)%3;
+  document.getElementById(id+'-track').style.transform=`translateX(-${s.idx*100}%)`;
+  document.querySelectorAll('#'+id+'-dots span').forEach((d,i)=>d.classList.toggle('on',i===s.idx));
+}
+
+function uploadSlide(id,slot){
+  triggerUpload(data=>{
+    const img=document.getElementById(id+'-'+slot);
+    img.src=data;img.style.display='block';
+    img.parentElement.classList.remove('empty');
+    try{window.storage.set('slide_'+id+'_'+slot,data);}catch(e){}
+  });
+}
+
+// Auto-slide
+setInterval(()=>['m0','m1','m2'].forEach(id=>slideGo(id,1)),5000);
+
+async function loadModelSlides(){
+  for(const id of['m0','m1','m2']){
+    for(let s=0;s<3;s++){
+      try{
+        const d=await window.storage.get('slide_'+id+'_'+s);
+        if(d){
+          const img=document.getElementById(id+'-'+s);
+          img.src=d.value;img.style.display='block';
+          img.parentElement.classList.remove('empty');
+        }
+      }catch(e){}
+    }
+  }
+}
+loadModelSlides();
+
+function uploadReview(i){
+  triggerUpload(data=>{
+    const img=document.getElementById('rv'+i+'img');
+    const ph=document.getElementById('rv'+i+'ph');
+    if(img){img.src=data;img.style.display='block';}
+    if(ph) ph.style.display='none';
+    try{window.storage.set('rv_'+i,data);}catch(e){}
+  });
+}
+async function loadReviewAvatars(){
+  for(let i=0;i<3;i++){
+    try{
+      const d=await window.storage.get('rv_'+i);
+      if(d){
+        const img=document.getElementById('rv'+i+'img');
+        const ph=document.getElementById('rv'+i+'ph');
+        if(img){img.src=d.value;img.style.display='block';}
+        if(ph) ph.style.display='none';
+      }
+    }catch(e){}
+  }
+}
+function uploadJacGal(i){
+  triggerUpload(data=>{
+    const img=document.getElementById('jgi'+i);
+    const ph=document.getElementById('jgph'+i);
+    if(img){img.src=data;img.style.display='block';}
+    if(ph) ph.style.display='none';
+    try{window.storage.set('jg_'+i,data);}catch(e){}
+  });
+}
+async function loadJacGal(){
+  for(let i=0;i<12;i++){
+    try{
+      const d=await window.storage.get('jg_'+i);
+      if(d){
+        const img=document.getElementById('jgi'+i);
+        const ph=document.getElementById('jgph'+i);
+        if(img){img.src=d.value;img.style.display='block';}
+        if(ph) ph.style.display='none';
+      }
+    }catch(e){}
+  }
+}
+loadJacGal();
+
+loadReviewAvatars();
+
+// ===== FAQ =====
+document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const item=q.parentElement,was=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(!was)item.classList.add('open');});});
+document.querySelectorAll('.faq-cat').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.faq-cat').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const cat=btn.dataset.cat;document.querySelectorAll('.faq-item').forEach(item=>{item.classList.toggle('hidden',cat!=='all'&&item.dataset.cat!==cat);});});});
+</script>
+</body>
+</html>
