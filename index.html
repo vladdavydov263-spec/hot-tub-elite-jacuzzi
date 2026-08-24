@@ -153,6 +153,18 @@ footer p.desc{color:var(--espresso-soft);font-size:.93rem;max-width:270px}
 /* Upload toast */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--espresso);color:var(--cream);padding:.8rem 1.6rem;border-radius:50px;font-size:.88rem;font-weight:600;z-index:9999;transition:transform .4s cubic-bezier(.2,.7,.3,1);pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0)}
+/* Order modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(34,35,37,.55);backdrop-filter:blur(4px);z-index:10000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-overlay.show{opacity:1;pointer-events:auto}
+.modal-box{background:var(--cream);border-radius:24px;padding:38px 34px;max-width:440px;width:100%;position:relative;box-shadow:0 40px 80px -30px rgba(0,0,0,.5);transform:translateY(18px) scale(.97);transition:transform .35s cubic-bezier(.2,.7,.3,1)}
+.modal-overlay.show .modal-box{transform:translateY(0) scale(1)}
+.modal-close{position:absolute;top:18px;right:18px;width:34px;height:34px;border-radius:50%;border:none;background:var(--cream-2);color:var(--espresso);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.modal-close:hover{background:var(--line)}
+#orderForm label{display:block;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--espresso-soft);margin:0 0 6px;font-weight:700}
+#orderForm input{width:100%;padding:12px 14px;margin-bottom:14px;border-radius:12px;border:1.5px solid var(--line);background:var(--cream-2);color:var(--espresso);font-size:.95rem;font-family:'Mulish'}
+#orderForm input:focus{outline:none;border-color:var(--amber)}
+body.modal-open{overflow:hidden}
+@media(max-width:560px){.modal-box{padding:30px 22px}}
 @media(max-width:980px){
   .nav-links{display:none}
   .hero-grid{grid-template-columns:1fr 1fr !important;gap:20px}
@@ -268,7 +280,7 @@ footer p.desc{color:var(--espresso-soft);font-size:.93rem;max-width:270px}
             <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Ozon:</b> Tak</div>
             <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Niecka:</b> Lucite</div>
           </div>
-          <a href="#kontakt" class="btn btn-primary" style="justify-content:center;margin-top:auto">Zapytaj o cenę →</a>
+          <button type="button" class="btn btn-primary" style="justify-content:center;margin-top:auto;width:100%" onclick="openOrderModal('m0')">Zapytaj o cenę →</button>
         </div>
       </div>
 
@@ -299,7 +311,7 @@ footer p.desc{color:var(--espresso-soft);font-size:.93rem;max-width:270px}
             <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Ozon:</b> Tak</div>
             <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Niecka:</b> Lucite</div>
           </div>
-          <a href="#kontakt" class="btn btn-primary" style="justify-content:center;margin-top:auto">Zapytaj o cenę →</a>
+          <button type="button" class="btn btn-primary" style="justify-content:center;margin-top:auto;width:100%" onclick="openOrderModal('m1')">Zapytaj o cenę →</button>
         </div>
       </div>
 
@@ -331,7 +343,7 @@ footer p.desc{color:var(--espresso-soft);font-size:.93rem;max-width:270px}
             <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Ozon:</b> Tak</div>
             <div style="font-size:.8rem;color:var(--espresso-soft);padding:4px 0;border-bottom:1px solid var(--line)"><b style="color:var(--espresso)">Niecka:</b> Lucite</div>
           </div>
-          <a href="#kontakt" class="btn btn-primary" style="justify-content:center;margin-top:auto">Zapytaj o cenę →</a>
+          <button type="button" class="btn btn-primary" style="justify-content:center;margin-top:auto;width:100%" onclick="openOrderModal('m2')">Zapytaj o cenę →</button>
         </div>
       </div>
 
@@ -513,6 +525,27 @@ footer p.desc{color:var(--espresso-soft);font-size:.93rem;max-width:270px}
   </div>
 </footer>
 
+<!-- MODAL: ZAPYTAJ O CENĘ -->
+<div class="modal-overlay" id="orderModal" onclick="if(event.target===this)closeOrderModal()">
+  <div class="modal-box">
+    <button type="button" class="modal-close" onclick="closeOrderModal()" aria-label="Zamknij">✕</button>
+    <div class="eyebrow" style="color:var(--amber-deep)">Bezpłatna wycena</div>
+    <h3 id="modalModelTitle" style="font-family:'Fraunces';font-weight:400;font-size:1.7rem;margin:8px 0 6px">Zapytaj o cenę</h3>
+    <p id="modalModelSubtitle" style="color:var(--espresso-soft);font-size:.92rem;margin-bottom:22px"></p>
+    <form id="orderForm" onsubmit="return submitOrderForm(event)">
+      <input type="hidden" id="modalModelId" value="">
+      <label>Imię</label>
+      <input type="text" id="modalName" required placeholder="Jak się do Ciebie zwracać?">
+      <label>Telefon</label>
+      <input type="tel" id="modalPhone" required placeholder="+48 ...">
+      <label>E-mail</label>
+      <input type="email" id="modalEmail" placeholder="twoj@email.pl">
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:6px">Wyślij zapytanie →</button>
+      <small style="display:block;text-align:center;color:var(--espresso-soft);margin-top:12px;font-size:.78rem">Odpowiedź gwarantowana w 24 godziny.</small>
+    </form>
+  </div>
+</div>
+
 <script>
 // ===== REVEAL =====
 const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.08});
@@ -541,8 +574,9 @@ function compress(file,cb){
   r.readAsDataURL(file);
 }
 
-function showToast(){
+function showToast(msg){
   const t=document.getElementById('toast');
+  t.textContent=msg||'✓ Zdjęcie dodane!';
   t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2200);
 }
@@ -694,6 +728,52 @@ async function loadJacGal(){
 loadJacGal();
 
 loadReviewAvatars();
+
+// ===== MODAL: ZAPYTAJ O CENĘ (przypięty do modelu) =====
+const modelInfo={
+  m0:{name:'Model 5R50',size:'5 osób · 200×200×88 cm'},
+  m1:{name:'Model 6R02',size:'6 osób · 200×200×88 cm'},
+  m2:{name:'Model 5A13',size:'5 osób · 200×200×88 cm'}
+};
+
+function openOrderModal(modelId){
+  const model=modelInfo[modelId];
+  document.getElementById('modalModelId').value=modelId;
+  document.getElementById('modalModelTitle').textContent='Zapytaj o cenę — '+model.name;
+  document.getElementById('modalModelSubtitle').textContent=model.size+'. Zostaw kontakt, a przygotujemy wycenę dla tego modelu.';
+  document.getElementById('orderModal').classList.add('show');
+  document.body.classList.add('modal-open');
+}
+
+function closeOrderModal(){
+  document.getElementById('orderModal').classList.remove('show');
+  document.body.classList.remove('modal-open');
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeOrderModal();});
+
+function submitOrderForm(e){
+  e.preventDefault();
+  const modelId=document.getElementById('modalModelId').value;
+  const lead={
+    model:modelInfo[modelId].name,
+    modelId:modelId,
+    name:document.getElementById('modalName').value,
+    phone:document.getElementById('modalPhone').value,
+    email:document.getElementById('modalEmail').value,
+    date:new Date().toISOString()
+  };
+  sendLead(lead);
+  return false;
+}
+
+// TODO: tutaj podłączymy wysyłkę do Telegram (Bot API) i Google Sheets (Apps Script webhook)
+function sendLead(lead){
+  console.log('Nowe zapytanie o wycenę:',lead);
+  showToast('✓ Zapytanie wysłane! Skontaktujemy się wkrótce.');
+  closeOrderModal();
+  document.getElementById('orderForm').reset();
+}
 
 // ===== FAQ =====
 document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const item=q.parentElement,was=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(!was)item.classList.add('open');});});
